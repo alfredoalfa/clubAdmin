@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Evento</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evento.id }}</td>
+            </tr>
+            <tr>
+                <th>Creado</th>
+                <td>{% if evento.creado %}{{ evento.creado|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Finaliza</th>
+                <td>{% if evento.finaliza %}{{ evento.finaliza|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{% if evento.enabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ evento.imagen }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ evento.precio }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ evento.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Detalle</th>
+                <td>{{ evento.detalle }}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ evento.contenido }}</td>
+            </tr>
+            <tr>
+                <th>Caracteristicas</th>
+                <td>{% if evento.caracteristicas %}{{ evento.caracteristicas|join(', ') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('evento_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('evento_edit', { 'id': evento.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
